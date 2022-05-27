@@ -97,18 +97,7 @@ public class Spiel
     private void raumInfoAusgeben(){
         System.out.println("Sie sind " + aktuellerRaum.gibBeschreibung());
         System.out.print("Ausgänge: ");
-        if(aktuellerRaum.nordausgang != null)
-            System.out.print("north ");
-        if(aktuellerRaum.ostausgang != null)
-            System.out.print("east ");
-        if(aktuellerRaum.suedausgang != null)
-            System.out.print("south ");
-        if(aktuellerRaum.westausgang != null)
-            System.out.print("west ");
-        if(aktuellerRaum.treppeNachOben != null)
-            System.out.print("up ");
-        if(aktuellerRaum.treppeNachUnten != null)
-            System.out.print("down ");
+        System.out.println(this.aktuellerRaum.ausgaengeToString());
         System.out.println();
     }
 
@@ -158,6 +147,7 @@ public class Spiel
      * wechsele in den neuen Raum, ansonsten gib eine Fehlermeldung
      * aus.
      */
+
     private void wechsleRaum(Befehl befehl) 
     {
         if(!befehl.hatZweitesWort()) {
@@ -169,25 +159,7 @@ public class Spiel
         String richtung = befehl.gibZweitesWort();
 
         // Wir versuchen den Raum zu verlassen.
-        Raum naechsterRaum = null;
-        if(richtung.equals("north")) {
-            naechsterRaum = aktuellerRaum.nordausgang;
-        }
-        if(richtung.equals("east")) {
-            naechsterRaum = aktuellerRaum.ostausgang;
-        }
-        if(richtung.equals("south")) {
-            naechsterRaum = aktuellerRaum.suedausgang;
-        }
-        if(richtung.equals("west")) {
-            naechsterRaum = aktuellerRaum.westausgang;
-        }
-        if(richtung.equals("up")) {
-            naechsterRaum = aktuellerRaum.treppeNachOben;
-        }
-        if(richtung.equals("down")) {
-            naechsterRaum = aktuellerRaum.treppeNachUnten;
-        }
+        Raum naechsterRaum = this.aktuellerRaum.getAusgang(richtung);
 
         if (naechsterRaum == null) {
             System.out.println("Dort ist keine Tür!");

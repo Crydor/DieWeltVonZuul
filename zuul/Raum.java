@@ -14,13 +14,13 @@ package zuul;
 
 public class Raum 
 {
-    public String beschreibung;
-    public Raum nordausgang;
-    public Raum suedausgang;
-    public Raum ostausgang;
-    public Raum westausgang;
-    public Raum treppeNachOben;
-    public Raum treppeNachUnten;
+    private String beschreibung;
+    private Raum nordausgang;
+    private Raum suedausgang;
+    private Raum ostausgang;
+    private Raum westausgang;
+    private Raum treppeNachOben;
+    private Raum treppeNachUnten;
 
     /**
      * Erzeuge einen Raum mit einer Beschreibung. Ein Raum
@@ -68,4 +68,37 @@ public class Raum
         return beschreibung;
     }
 
+    public Raum getAusgang(String ausgang){
+        Raum ausgangs_raum = null;
+        if(ausgang.equals("north"))
+            ausgangs_raum = nordausgang;
+        if(ausgang.equals("east"))
+            ausgangs_raum = ostausgang;
+        if(ausgang.equals("south"))
+            ausgangs_raum = suedausgang;
+        if(ausgang.equals("west"))
+            ausgangs_raum = westausgang;
+        if(ausgang.equals("up"))
+            ausgangs_raum = treppeNachOben;
+        if(ausgang.equals("down"))
+            ausgangs_raum = treppeNachUnten;
+        return ausgangs_raum;
+    }
+
+    public String ausgaengeToString(){
+        String ausgaenge = "";
+        if(nordausgang != null)
+            ausgaenge += "north ";
+        if(ostausgang != null)
+            ausgaenge += "east ";
+        if(suedausgang != null)
+            ausgaenge += "south ";
+        if(westausgang != null)
+            ausgaenge += "west ";
+        if(treppeNachOben != null)
+            ausgaenge += "up ";
+        if(treppeNachUnten != null)
+            ausgaenge += "down ";
+        return ausgaenge;
+    }
 }
